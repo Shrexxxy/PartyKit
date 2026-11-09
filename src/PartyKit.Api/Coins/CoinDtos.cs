@@ -5,7 +5,7 @@ namespace PartyKit.Api.Coins;
 /// <summary>
 /// Строка таблицы лидеров.
 /// </summary>
-/// <param name="Cash">«На руках»: ослики минус покупки на аукционе; места считаются по <paramref name="Coins"/>.</param>
+/// <param name="Cash">«На руках»: монеты минус покупки на аукционе; места считаются по <paramref name="Coins"/>.</param>
 public record LeaderboardRowDto(Guid UserId, string Login, string? AvatarUrl, int Coins, int Place, int Cash);
 
 /// <summary>

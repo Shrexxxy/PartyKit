@@ -13,8 +13,9 @@ import { HideDark } from '../events/HideView'
 import { useWakeLock } from '../events/useWakeLock'
 import { useStartCountdown } from '../events/useCountdown'
 import { StartCountdown } from '../events/StartCountdown'
+import { theme } from '../theme'
 
-/** Итоги прошедшего ивента — его таблица осликов. */
+/** Итоги прошедшего ивента — его таблица монет. */
 function EventResults({ eventId, highlightUserId, version }: { eventId: string; highlightUserId?: string; version?: string }) {
     const [rows, setRows] = useState<LeaderboardRowDto[] | null>(null)
 
@@ -29,7 +30,7 @@ function EventResults({ eventId, highlightUserId, version }: { eventId: string; 
     }
 
     return rows.every((r) => r.coins === 0) ? (
-        <p className="muted">Осликов в этом ивенте не раздавали</p>
+        <p className="muted">В этом ивенте {theme().currency.many} не раздавали</p>
     ) : (
         <ol className="rows">
             {rows.map((r) => (

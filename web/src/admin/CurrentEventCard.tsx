@@ -5,6 +5,7 @@ import { errorText } from './errors'
 import { EventControls } from './EventControls'
 import { EVENT_TYPE_LABELS } from './programOrder'
 import { Emoji } from '../components/Emoji'
+import { theme } from '../theme'
 
 /**
  * Сверху админки: что сейчас идёт и главные кнопки. Админ ведёт вечер с телефона — всё под рукой.
@@ -21,7 +22,7 @@ export function CurrentEventCard({ event, serverTime }: { event: ActiveEventDto 
   }
 
   async function finish() {
-    if (!event || !confirm(`Завершить «${event.title}» и начислить ослики?`)) {
+    if (!event || !confirm(`Завершить «${event.title}» с начислением ${theme().currency.many}?`)) {
       return
     }
     setError(null)

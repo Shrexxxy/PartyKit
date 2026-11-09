@@ -1,0 +1,7 @@
+{
+  "title": "Тестовый праздник",
+  "host": { "name": "Анна", "birthDate": "2001-11-06" },
+  "partyDate": "2026-11-06",
+  "currency": { "one": "монетка", "few": "монетки", "many": "монеток", "icon": "coin.svg" },
+  "palette": { "accent": "#ff00aa", "surface-dark": "#101010" }
+}

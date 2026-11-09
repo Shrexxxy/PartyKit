@@ -170,7 +170,7 @@ public class TournamentModule(AppDbContext db, Random random, ToteService tote) 
             return;
         }
 
-        // Ослики за 1-е место уже начислены — добавляем поправку отдельной строкой.
+        // Монеты за 1-е место уже начислены — добавляем поправку отдельной строкой.
         var firstPlace = await db.CoinAwards.Where(a => a.EventId == ev.Id && a.UserId == champion).SumAsync(a => a.Amount);
         var won = challenge.WinnerId == champion;
         var target = won ? firstPlace * 2 : (int)Math.Round(firstPlace * 0.5, MidpointRounding.AwayFromZero);

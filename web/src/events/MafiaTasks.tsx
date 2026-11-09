@@ -127,7 +127,7 @@ function Gingerbread({ onDone }: { onDone: () => void }) {
 }
 
 /**
- * Ночные задания одно за другим, до пяти. Роли делают их для вида — сервер сам решает, кому ослики.
+ * Ночные задания одно за другим, до пяти. Роли делают их для вида — сервер сам решает, кому монеты.
  */
 export function NightTasks({ eventId, details }: { eventId: string; details: MafiaDetails }) {
   const [kind, setKind] = useState<TaskKind>(() => nextTask(null))
@@ -172,7 +172,7 @@ export function NightTasks({ eventId, details }: { eventId: string; details: Maf
   )
 }
 
-/** Ослики за партию: кто за что сколько. Игроку во время игры — только своя строка. */
+/** Монеты за партию: кто за что сколько. Игроку во время игры — только своя строка. */
 export function BonusSheet({ details }: { details: MafiaDetails }) {
   const ids = new Set(details.bonuses.map((b) => b.userId))
   const rows = bonusSheet(details).filter((r) => details.phase === 'Ended' || ids.has(r.userId))

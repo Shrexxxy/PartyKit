@@ -85,7 +85,7 @@ public class AuctionService(AppDbContext db, ILiveNotifier live, TimeProvider ti
     });
 
     /// <summary>
-    /// Отмена продажи (ошиблись): ослики возвращаются, лот первым в очередь.
+    /// Отмена продажи (ошиблись): монеты возвращаются, лот первым в очередь.
     /// </summary>
     public Task UndoAsync(Guid eventId) => ChangeAsync(eventId, async state =>
     {

@@ -10,13 +10,13 @@ namespace PartyKit.Tests.Days;
 
 public class DaysTests : IDisposable
 {
-    // 06.11.2001 → 06.11.2026: 25 лет, из них 6 високосных.
+    // Даты тестовой темы: 06.11.2001 → 06.11.2026, 25 лет, из них 6 високосных.
     private const int Truth = 25 * 365 + 6;
 
     private readonly AppFactory _factory = new();
 
     [Fact]
-    public async Task Truth_from_config()
+    public async Task Truth_from_theme()
     {
         await _factory.SeedPlayerAsync("Ann");
         var (_, admin) = await StartAsync();

@@ -24,7 +24,7 @@ public record CeremonyState(int Step);
 public record CeremonyDetails(int Step, int TotalSteps, IReadOnlyList<StandingDto> Standings);
 
 /// <summary>
-/// Церемония награждения: на старте фиксирует таблицу и ачивки, именинник листает шаги. Ослики не начисляет.
+/// Церемония награждения: на старте фиксирует таблицу и ачивки, именинник листает шаги. Монеты не начисляет.
 /// </summary>
 public class CeremonyModule(AppDbContext db, CoinService coins, ILiveNotifier live) : IEventModule
 {

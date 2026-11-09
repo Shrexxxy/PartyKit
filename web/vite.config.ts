@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       '/api': backend,
       '/media': backend,
+      '/theme': backend,
       '/hub': { target: backend, ws: true },
     },
   },

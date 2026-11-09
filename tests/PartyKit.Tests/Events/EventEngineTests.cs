@@ -219,7 +219,7 @@ public class EventEngineTests : IDisposable
     [Fact]
     public async Task Finish_during_countdown_cancels_start()
     {
-        // Ведущий передумал во время отсчёта — «Завершить» возвращает ивент в черновики, осликов не начисляет.
+        // Ведущий передумал во время отсчёта — «Завершить» возвращает ивент в черновики, монет не начисляет.
         using var factory = new AppFactory(configureServices: s => s.AddScoped<IEventModule, FakeLaughModule>(), startDelaySeconds: 15);
         var admin = await TestClients.AdminAsync(factory);
         var ev = await CreateAsync(admin, "Смехлыст");

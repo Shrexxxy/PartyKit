@@ -18,7 +18,7 @@ export function AuctionControls({ event, details, serverTime }: { event: ActiveE
         </button>
       )}
       {details.phase === 'Sold' && (
-        <button disabled={busy} onClick={() => confirm('Отменить продажу? Ослики вернутся, лот снова выйдет первым.') && void run(`${base}/undo`)}>
+        <button disabled={busy} onClick={() => confirm('Отменить продажу? Монеты вернутся, лот снова выйдет первым.') && void run(`${base}/undo`)}>
           ↩ Отменить продажу
         </button>
       )}

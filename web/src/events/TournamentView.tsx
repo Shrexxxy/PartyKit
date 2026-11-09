@@ -6,6 +6,7 @@ import type { MatchDto, TournamentDetails, TournamentPlayer } from './details'
 import { bracketColumns, bracketLines, currentMatchId, type MatchBox, myBets, oddsText, ROUND_TITLES } from './tournament'
 import { Emoji } from '../components/Emoji'
 import { CameraButton } from '../admin/CameraButton'
+import { theme } from '../theme'
 
 const MAX_BET = 25
 
@@ -198,10 +199,10 @@ export function TournamentView({ eventId, details, myId, tv }: { eventId: string
   return (
     <div className={tv ? 'tournament tv' : 'tournament'}>
       {tv && details.challenge.state === 'Offered' && champion && (
-        <div className="challenge-banner">{champion} решает: драться с именинником или забрать ослики?</div>
+        <div className="challenge-banner">{champion} решает: драться с именинником или забрать награду?</div>
       )}
       {tv && details.challenge.state === 'Declined' && champion && (
-        <div className="challenge-banner">{champion} забирает ослики — вызов не брошен</div>
+        <div className="challenge-banner">{champion} забирает награду — вызов не брошен</div>
       )}
       {tv && challengeMatch && challengeMatch.status !== 'Done' && (
         <div className="challenge-banner"><Emoji e="⚔️" /> {challengeMatch.playerA?.login} бросает вызов имениннику!</div>
@@ -212,7 +213,7 @@ export function TournamentView({ eventId, details, myId, tv }: { eventId: string
       {!tv && details.challenge.offeredToMe && details.challenge.state === 'Offered' && (
         <div className="card challenge-offer">
           <b><Emoji e="🏆" /> Ты выиграл турнир!</b>
-          <p>Забрать 100% осликов за 1-е место — или бросить вызов имениннику: победишь — ×2, проиграешь — ×0,5.</p>
+          <p>Забрать 100% {theme().currency.many} за 1-е место — или бросить вызов имениннику: победишь — ×2, проиграешь — ×0,5.</p>
           <div className="bet-sides">
             <button onClick={() => void decide(false)}>Забрать 100%</button>
             <button className="primary" onClick={() => void decide(true)}>

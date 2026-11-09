@@ -10,7 +10,7 @@ using PartyKit.Api.Live;
 namespace PartyKit.Api.Pets;
 
 /// <summary>
-/// Драконоослики: появляются после закрытия регистрации (опоздавшим — сразу), вылупляются, растут от заработанных осликов.
+/// Драконоослики: появляются после закрытия регистрации (опоздавшим — сразу), вылупляются, растут от заработанных монет.
 /// </summary>
 public class PetService(AppDbContext db, ILiveNotifier live, Random random, TimeProvider time)
 {

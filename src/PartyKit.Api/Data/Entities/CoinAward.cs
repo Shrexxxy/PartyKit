@@ -1,7 +1,7 @@
 namespace PartyKit.Api.Data.Entities;
 
 /// <summary>
-/// Начисление (или списание) осликов игроку.
+/// Начисление (или списание) монет игроку.
 /// </summary>
 public class CoinAward
 {

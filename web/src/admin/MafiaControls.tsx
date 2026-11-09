@@ -57,7 +57,7 @@ export function MafiaControls({ event, details, serverTime }: { event: ActiveEve
 
       {details.bonuses.length > 0 && (
         <details open={phase === 'Ended'}>
-          <summary>Ослики за партию</summary>
+          <summary>Монеты за партию</summary>
           <BonusSheet details={details} />
         </details>
       )}
@@ -97,7 +97,7 @@ export function MafiaControls({ event, details, serverTime }: { event: ActiveEve
       )}
 
       {phase === 'Ended' ? (
-        <p className="muted">{details.winner === 'Mafia' ? 'Победила мафия' : 'Победили мирные'} — «<Emoji e="⏹" /> Завершить», чтобы начислить ослики.</p>
+        <p className="muted">{details.winner === 'Mafia' ? 'Победила мафия' : 'Победили мирные'} — «<Emoji e="⏹" /> Завершить», чтобы начислить награды.</p>
       ) : (
         <button className="primary" disabled={busy} onClick={() => void run(`/api/admin/mafia/${event.id}/next?step=${details.step}`)}>
           <EmojiText text={phase === 'Speech' ? '⏭ Передать слово' : '▶ Дальше'} />

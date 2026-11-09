@@ -28,7 +28,7 @@ public record NeuroState(int Index, NeuroPhase Phase, DateTimeOffset Deadline, I
 /// <param name="Guessed">Сколько уже ответили в этом раунде.</param>
 /// <param name="Answer">Кто на фото — с раскрытия.</param>
 /// <param name="Character">Под кого замаскирован — с раскрытия.</param>
-/// <param name="MyPoints">Сколько осликов за раунд получил зритель — с раскрытия.</param>
+/// <param name="MyPoints">Сколько монет за раунд получил зритель — с раскрытия.</param>
 /// <param name="Correct">Логины угадавших человека — с раскрытия.</param>
 /// <param name="FriendUrl">Фото друга — с раскрытия.</param>
 /// <param name="SourceUrl">Картинка-образ — с раскрытия.</param>
@@ -52,7 +52,7 @@ public record NeuroDetails(
 
 /// <summary>
 /// Угадай по нейрофото: друг замаскирован под персонажа. Раунд — 20 секунд угадать человека и персонажа,
-/// 12 секунд раскрытие (на ТВ три фото: друг, образ, результат). Ослики — сразу на раскрытии:
+/// 12 секунд раскрытие (на ТВ три фото: друг, образ, результат). Монеты — сразу на раскрытии:
 /// человек +2, персонаж +2, оба +5. Мест и линейной схемы нет.
 /// </summary>
 public class NeuroModule(AppDbContext db, NeuroCatalog catalog, Random random, TimeProvider time) : IEventModule
@@ -74,7 +74,7 @@ public class NeuroModule(AppDbContext db, NeuroCatalog catalog, Random random, T
     /// <inheritdoc/>
     public EventType Type => EventType.NeuroPhoto;
 
-    /// <summary>Ослики за раунд.</summary>
+    /// <summary>Монеты за раунд.</summary>
     public static int PointsFor(NeuroGuess guess, NeuroRound round)
     {
         var person = guess.Person == round.Answer;
@@ -151,14 +151,14 @@ public class NeuroModule(AppDbContext db, NeuroCatalog catalog, Random random, T
     }
 
     /// <inheritdoc/>
-    /// <remarks>Ослики уже начислены на раскрытиях — при завершении добавлять нечего.</remarks>
+    /// <remarks>Монеты уже начислены на раскрытиях — при завершении добавлять нечего.</remarks>
     public Task<IReadOnlyList<Ranked<Guid>>> RankAsync(Event ev) => Task.FromResult<IReadOnlyList<Ranked<Guid>>>([]);
 
     internal static NeuroState StateOf(Event ev) => JsonSerializer.Deserialize<NeuroState>(ev.StateJson!, Json)!;
 
     private NeuroRound RoundOf(NeuroState state) => catalog.Rounds.Single(r => r.Id == state.RoundIds[state.Index]);
 
-    /// <summary>Ослики за раунд — сразу, чтобы таблица росла по ходу игры.</summary>
+    /// <summary>Монеты за раунд — сразу, чтобы таблица росла по ходу игры.</summary>
     private async Task AwardAsync(Event ev, NeuroRound round, DateTimeOffset now)
     {
         var guesses = await db.NeuroGuesses.AsNoTracking().Where(g => g.EventId == ev.Id && g.RoundId == round.Id).ToListAsync();

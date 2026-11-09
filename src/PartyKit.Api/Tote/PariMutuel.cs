@@ -10,7 +10,7 @@ public static class PariMutuel
 {
     /// <summary>
     /// Выплаты по ставкам (ставка → сколько вернуть). Никто не угадал — каждому возврат его ставки.
-    /// Остаток от округления вниз — крупнейшей выигравшей ставке, чтобы банк сошёлся до ослика.
+    /// Остаток от округления вниз — крупнейшей выигравшей ставке, чтобы банк сошёлся до монеты.
     /// </summary>
     public static IReadOnlyDictionary<Guid, int> Settle(IReadOnlyList<PariMutuelBet> bets, Guid winnerId)
     {

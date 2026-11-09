@@ -1,7 +1,14 @@
-/** Монета-ослик — валюта вечеринки: золотая монета с головой осла. */
+import { theme } from '../theme'
+
+/** Иконка валюты: картинка темы, а если её нет — встроенная золотая монета. */
 export function CoinIcon({ size = '1.15em' }: { size?: string }) {
+  const { iconUrl, many } = theme().currency
+  if (iconUrl) {
+    return <img className="coin-icon" src={iconUrl} width={size} height={size} alt={many} />
+  }
+
   return (
-    <svg className="coin-icon" viewBox="0 0 32 32" width={size} height={size} role="img" aria-label="ослики">
+    <svg className="coin-icon" viewBox="0 0 32 32" width={size} height={size} role="img" aria-label={many}>
       <circle cx="16" cy="16" r="14.5" fill="#ffd166" stroke="#c99a2e" strokeWidth="2.5" />
       <circle cx="16" cy="16" r="10.8" fill="none" stroke="#c99a2e" strokeWidth="1" opacity="0.6" />
       <g fill="#0a1824" opacity="0.82">
@@ -20,7 +27,7 @@ export function CoinIcon({ size = '1.15em' }: { size?: string }) {
   )
 }
 
-/** Число осликов с монетой. */
+/** Число монет с иконкой валюты. */
 export function Coins({ value }: { value: number }) {
   return (
     <span className="coins">

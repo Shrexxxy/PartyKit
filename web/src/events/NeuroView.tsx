@@ -2,6 +2,7 @@ import { api } from '../api/http'
 import { formatClock } from './countdown'
 import type { NeuroDetails } from './details'
 import { useCountdown } from './useCountdown'
+import { coins } from '../theme'
 
 /** Друг + образ = что получилось — на раскрытии ТВ и в карусели. */
 export function NeuroTriple({ friendUrl, sourceUrl, resultUrl }: { friendUrl: string; sourceUrl: string; resultUrl: string }) {
@@ -75,7 +76,7 @@ export function NeuroView({ eventId, details, serverTime, tv }: { eventId: strin
             <div className="neuro-verdict">
               <span>{details.myPerson === details.answer ? 'Человек — угадал' : 'Человек — мимо'}</span>
               <span>{details.myCharacter === details.character ? 'Персонаж — угадал' : 'Персонаж — мимо'}</span>
-              <b>+{details.myPoints ?? 0} осликов</b>
+              <b>+{coins(details.myPoints ?? 0)}</b>
             </div>
           )}
           {tv && <div className="muted">{details.correct.length > 0 ? `Угадали, кто это: ${details.correct.join(', ')}` : 'Никто не угадал, кто это'}</div>}

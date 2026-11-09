@@ -8,12 +8,12 @@ using PartyKit.Api.Scoring;
 namespace PartyKit.Api.Coins;
 
 /// <summary>
-/// Начисление осликов и таблица лидеров.
+/// Начисление монет и таблица лидеров.
 /// </summary>
 public class CoinService(AppDbContext db, TimeProvider time, ILiveNotifier live)
 {
     /// <summary>
-    /// Начисляет (или списывает при отрицательном) ослики игроку.
+    /// Начисляет (или списывает при отрицательном) монеты игроку.
     /// </summary>
     public async Task AwardAsync(Guid userId, int amount, string reason, Guid? eventId = null)
     {
@@ -23,7 +23,7 @@ public class CoinService(AppDbContext db, TimeProvider time, ILiveNotifier live)
     }
 
     /// <summary>
-    /// Переводит места рейтинга в ослики (линейно) и начисляет. Нулевые награды не пишутся.
+    /// Переводит места рейтинга в монеты (линейно) и начисляет. Нулевые награды не пишутся.
     /// </summary>
     public async Task AwardRankingAsync(
         Guid eventId,

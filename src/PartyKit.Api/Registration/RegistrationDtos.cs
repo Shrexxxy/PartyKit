@@ -21,7 +21,7 @@ public enum RegistrationState
 public record RegistrationStatusDto(RegistrationState State, DateTimeOffset? OpenedAt, int WaitingCount, DateTimeOffset? ClosedAt = null);
 
 /// <summary>
-/// Строка таблицы регистрации: за что дали ослики.
+/// Строка таблицы регистрации: за что дали монеты.
 /// </summary>
 /// <param name="Place">Место по итогу регистрации; у опоздавших — null.</param>
 /// <param name="SpeedPlace">Место по скорости — для медалек; у опоздавших — null.</param>

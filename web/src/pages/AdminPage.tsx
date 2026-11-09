@@ -13,6 +13,7 @@ import { CoinIcon } from '../components/CoinIcon'
 import { Icon } from '../components/Icon'
 import { Leaderboard } from '../components/Leaderboard'
 import { Emoji } from '../components/Emoji'
+import { theme } from '../theme'
 
 const STATE_LABELS = { Closed: 'закрыта, гости ждут', Open: 'открыта', Finished: 'закрыта, очки начислены' } as const
 
@@ -52,7 +53,7 @@ function RegistrationControl({ snapshot }: { snapshot: AppSnapshot }) {
   )
 }
 
-/** Ручные ослики: игрок, ± число, причина. */
+/** Ручные монеты: игрок, ± число, причина. */
 function AwardForm({ snapshot, onDone }: { snapshot: AppSnapshot; onDone: () => void }) {
   const [userId, setUserId] = useState('')
   const [amount, setAmount] = useState('')
@@ -120,7 +121,7 @@ function ResetForm({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="form">
-      <p className="muted">Удалит игроков, ослики, ивенты и аватарки. Админ и ТВ останутся.</p>
+      <p className="muted">Удалит игроков, начисления {theme().currency.many}, ивенты и аватарки. Админ и ТВ останутся.</p>
       <label>
         Напиши «СБРОС»
         <input value={confirm} onChange={(e) => setConfirm(e.target.value)} />
@@ -148,7 +149,7 @@ export function AdminPage() {
           <span>Программа</span>
         </Link>
         {snapshot && (
-          <AdminDialog icon={<CoinIcon size="28px" />} label="Начислить" title="Начислить ослики" tileClassName="lamp">
+          <AdminDialog icon={<CoinIcon size="28px" />} label="Начислить" title={`Начисление ${theme().currency.many}`} tileClassName="lamp">
             {(close) => <AwardForm snapshot={snapshot} onDone={close} />}
           </AdminDialog>
         )}

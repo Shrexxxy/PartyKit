@@ -53,7 +53,7 @@ public class HideSeekModule(AppDbContext db, TimeProvider time) : IEventModule
     /// <summary>Бонус каждому, кто попал на самое смешное фото.</summary>
     public const int FunniestBonus = 15;
 
-    /// <summary>Причина бонуса в истории осликов.</summary>
+    /// <summary>Причина бонуса в истории монет.</summary>
     public const string FunniestReason = "Самое смешное фото";
 
     /// <summary>Сколько даётся спрятаться.</summary>

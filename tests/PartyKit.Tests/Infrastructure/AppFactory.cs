@@ -14,7 +14,12 @@ namespace PartyKit.Tests.Infrastructure;
 /// <param name="dataDir">Общая папка данных (для тестов перезапуска); null — своя временная.</param>
 /// <param name="configureServices">Подмена сервисов (например, тестовый модуль ивента).</param>
 /// <param name="startDelaySeconds">Отсчёт перед стартом ивента; 0 — ивент стартует сразу (почти все тесты).</param>
-public class AppFactory(string? dataDir = null, Action<IServiceCollection>? configureServices = null, int startDelaySeconds = 0)
+/// <param name="themeDir">Папка темы; null — тестовая тема.</param>
+public class AppFactory(
+    string? dataDir = null,
+    Action<IServiceCollection>? configureServices = null,
+    int startDelaySeconds = 0,
+    string? themeDir = null)
     : WebApplicationFactory<Program>
 {
     public const string AdminLogin = "admin";
@@ -40,6 +45,7 @@ public class AppFactory(string? dataDir = null, Action<IServiceCollection>? conf
         builder.UseSetting("Accounts:Viewer:Password", ViewerPassword);
         builder.UseSetting("Events:TickerEnabled", "false");
         builder.UseSetting("Party:StartDelaySeconds", startDelaySeconds.ToString());
+        builder.UseSetting("Theme:Dir", themeDir ?? Path.Combine(AppContext.BaseDirectory, "Theming", "test-theme"));
         builder.ConfigureServices(services =>
         {
             services.Replace(ServiceDescriptor.Singleton<TimeProvider>(Time));

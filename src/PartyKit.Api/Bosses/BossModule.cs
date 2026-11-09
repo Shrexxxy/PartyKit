@@ -112,7 +112,7 @@ public record BossDetails(
 /// </summary>
 public class BossModule(AppDbContext db, ILiveNotifier live, PetService pets, Random random) : IEventModule
 {
-    /// <summary>Штраф каждому участнику за поражение (не больше осликов на руках).</summary>
+    /// <summary>Штраф каждому участнику за поражение (не больше монет на руках).</summary>
     public const int LossPenalty = 25;
 
     /// <summary>Появление босса.</summary>

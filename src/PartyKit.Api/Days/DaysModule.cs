@@ -1,11 +1,11 @@
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using PartyKit.Api.Auth;
 using PartyKit.Api.Data;
 using PartyKit.Api.Data.Entities;
 using PartyKit.Api.Events;
 using PartyKit.Api.Scoring;
+using PartyKit.Api.Theming;
 
 namespace PartyKit.Api.Days;
 
@@ -43,7 +43,7 @@ public record DaysDetails(
 /// <summary>
 /// Сколько мне дней: 30 секунд на ответ, свернул или переключился — дисквалификация; ближе к правде — выше.
 /// </summary>
-public class DaysModule(AppDbContext db, IOptions<PartyOptions> party, TimeProvider time) : IEventModule
+public class DaysModule(AppDbContext db, PartyTheme theme, TimeProvider time) : IEventModule
 {
     /// <summary>Время на ответ.</summary>
     public static readonly TimeSpan AnswerTime = TimeSpan.FromSeconds(30);
@@ -65,7 +65,7 @@ public class DaysModule(AppDbContext db, IOptions<PartyOptions> party, TimeProvi
     public async Task<object?> GetDetailsAsync(Event ev, Guid? viewerId, bool isAdmin)
     {
         var state = StateOf(ev);
-        var truth = party.Value.AgeInDays;
+        var truth = theme.AgeInDays;
         var answers = await db.DaysAnswers.AsNoTracking().Where(a => a.EventId == ev.Id).ToListAsync();
         var users = await db.Users.AsNoTracking().Where(u => u.Role == UserRole.Player).ToDictionaryAsync(u => u.Id);
         var mine = answers.FirstOrDefault(a => a.UserId == viewerId);
@@ -106,7 +106,7 @@ public class DaysModule(AppDbContext db, IOptions<PartyOptions> party, TimeProvi
     /// <inheritdoc/>
     public async Task<IReadOnlyList<Ranked<Guid>>> RankAsync(Event ev)
     {
-        var truth = party.Value.AgeInDays;
+        var truth = theme.AgeInDays;
         var answers = await db.DaysAnswers.Where(a => a.EventId == ev.Id && !a.Disqualified && a.Days != null).ToListAsync();
         return DenseRanking.Rank(answers, a => Math.Abs(a.Days!.Value - truth), descending: false)
             .Select(r => new Ranked<Guid>(r.Item.UserId, r.Place))

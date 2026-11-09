@@ -72,7 +72,7 @@ public record AuctionDetails(
 
 /// <summary>
 /// Аукцион: лоты по одному, первая ставка — по стартовой цене, дальше +5/+10/+25; таймер сбрасывается каждой ставкой.
-/// Ослики тратятся с «на руках», места в таблице не меняются.
+/// Монеты тратятся с «на руках», места в таблице не меняются.
 /// </summary>
 public class AuctionModule(AppDbContext db, ILiveNotifier live) : IEventModule
 {
@@ -164,7 +164,7 @@ public class AuctionModule(AppDbContext db, ILiveNotifier live) : IEventModule
     internal static void SetState(Event ev, AuctionState state) => ev.StateJson = JsonSerializer.Serialize(state, Json);
 
     /// <summary>
-    /// «На руках» у каждого игрока: ослики минус покупки на аукционах.
+    /// «На руках» у каждого игрока: монеты минус покупки на аукционах.
     /// </summary>
     /// <summary>
     /// Аукцион боя — открытые медалью непроданные лоты этого босса; финальный — все непроданные (в т. ч. неоткрытые призы боссов).

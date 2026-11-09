@@ -13,7 +13,7 @@ import { markPetOpened, petOpened, switchToGame } from '../pets/pets'
 import { PetTab } from '../pets/PetTab'
 import { AvatarUpload } from './AvatarUpload'
 
-/** Главная игрока: место и ослики, плашка «сейчас идёт → перейти», питомец и таблица лидеров. Сам ивент — на своей странице. */
+/** Главная игрока: место и монеты, плашка «сейчас идёт → перейти», питомец и таблица лидеров. Сам ивент — на своей странице. */
 export function HomePage() {
   const { me } = useMe()
   const snapshot = useSnapshot()

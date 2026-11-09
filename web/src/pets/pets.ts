@@ -43,7 +43,7 @@ export function eggStage(taps: number): 0 | 1 | 2 | 3 {
   return taps >= EGG_TAPS ? 3 : taps >= 10 ? 2 : taps >= 5 ? 1 : 0
 }
 
-/** Сколько осликов до следующего уровня и сколько процентов уровня пройдено. */
+/** Сколько монет до следующего уровня и сколько процентов уровня пройдено. */
 export function xpProgress(pet: PetDto): { left: number; percent: number } {
   const levelStart = (pet.level - 1) * XP_PER_LEVEL
   return {

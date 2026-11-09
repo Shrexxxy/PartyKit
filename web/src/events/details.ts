@@ -156,7 +156,7 @@ export interface NeuroDetails {
   myPerson: string | null
   myCharacter: string | null
   guessed: number
-  /** С раскрытия: кто на фото, под кого, сколько осликов у зрителя, кто угадал человека и исходники. */
+  /** С раскрытия: кто на фото, под кого, сколько монет у зрителя, кто угадал человека и исходники. */
   answer: string | null
   character: string | null
   myPoints: number | null

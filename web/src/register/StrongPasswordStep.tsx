@@ -3,7 +3,7 @@ import { Emoji, EmojiText } from '../components/Emoji'
 
 /**
  * Фейковая ошибка «пароль слишком простой» и ввод нового. Сложность не показываем и не требуем:
- * увидев шкалу, все бы дотянули до максимума, а так ослики за пароль честно различаются.
+ * увидев шкалу, все бы дотянули до максимума, а так монеты за пароль честно различаются.
  */
 export function StrongPasswordStep({ error, busy, onSubmit }: { error: string | null; busy: boolean; onSubmit: (password: string) => void }) {
   const [password, setPassword] = useState('')

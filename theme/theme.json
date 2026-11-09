@@ -1,0 +1,13 @@
+{
+  "title": "Вечеринка",
+  "host": { "name": "Именинник", "birthDate": "2000-06-15" },
+  "partyDate": "2026-06-15",
+  "currency": { "one": "монетка", "few": "монетки", "many": "монеток" },
+  "palette": {
+    "night": "#0d2233",
+    "night-panel": "#16344b",
+    "lamp": "#ffd166",
+    "coral": "#ef6f5e",
+    "mint": "#6ee7b7"
+  }
+}

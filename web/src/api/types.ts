@@ -33,7 +33,7 @@ export interface LeaderboardRowDto {
   avatarUrl: string | null
   coins: number
   place: number
-  /** «На руках»: ослики минус покупки на аукционе (места — по coins). */
+  /** «На руках»: монеты минус покупки на аукционе (места — по coins). */
   cash: number
 }
 

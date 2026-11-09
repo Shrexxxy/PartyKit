@@ -276,7 +276,7 @@ export function MafiaView({ eventId, details, serverTime, myId, tv }: { eventId:
       {phase === 'Ended' && <MafiaTable details={details} />}
       {phase !== 'Ended' && details.bonuses.length > 0 && (
         <details className="card">
-          <summary>Твои ослики за партию: <Emoji e="🫏" /> {details.bonuses.reduce((sum, b) => sum + b.amount, 0)}</summary>
+          <summary>Заработано за партию: <Emoji e="🫏" /> {details.bonuses.reduce((sum, b) => sum + b.amount, 0)}</summary>
           <BonusSheet details={details} />
         </details>
       )}

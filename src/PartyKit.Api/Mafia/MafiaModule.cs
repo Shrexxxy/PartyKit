@@ -53,7 +53,7 @@ public enum MafiaTeam
     Mafia,
 }
 
-/// <summary>За что ослики в мафии (кроме победы).</summary>
+/// <summary>За что монеты в мафии (кроме победы).</summary>
 public enum MafiaBonusKind
 {
     /// <summary>Ночные задания мирного.</summary>
@@ -170,7 +170,7 @@ public class MafiaModule(AppDbContext db, ILiveNotifier live, Random random) : I
     /// <summary>Меньше — не игра: 2 мафии, доктор, комиссар и хотя бы один мирный.</summary>
     public const int MinPlayers = 5;
 
-    /// <summary>Заданий за ночь, по ослику за каждое.</summary>
+    /// <summary>Заданий за ночь, по монете за каждое.</summary>
     public const int MaxTasks = 5;
 
     /// <summary>За убийство каждому живому мафиози.</summary>

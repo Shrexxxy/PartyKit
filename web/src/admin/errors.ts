@@ -1,4 +1,5 @@
 import { ApiError } from '../api/http'
+import { coins, theme } from '../theme'
 
 const MESSAGES: Record<string, string> = {
   already_active: 'Сначала заверши текущий ивент',
@@ -72,20 +73,28 @@ const MESSAGES: Record<string, string> = {
   price_changed: 'Кто-то успел раньше — цена уже другая, жми ещё раз',
   bad_step: 'Шаг ставки — 5, 10 или 25',
   not_sold: 'Отменять нечего — лот не продан',
-  bad_price: 'Стартовая цена — от 1 ослика',
+  get bad_price() {
+    return `Стартовая цена — от 1 ${theme().currency.few}`
+  },
   too_late: 'Время вышло',
   closed: 'Уже закрыто',
   end: 'Это последний шаг',
   unsupported_type: 'Такой ивент не поддерживается',
   bad_file: 'Файл не подходит — нужна картинка, аудио или видео до 100 МБ',
   bad_message: 'Нужен текст и время от 1 до 600 секунд',
-  balance: 'Не хватает осликов',
-  limit: 'Не больше 25 осликов на матч',
+  get balance() {
+    return `Не хватает ${theme().currency.many}`
+  },
+  get limit() {
+    return `Не больше ${coins(25)} на матч`
+  },
   own_match: 'На свой матч ставить нельзя',
   not_current: 'Ставки открыты только на текущий матч',
   not_live: 'Матч сейчас не идёт',
   already: 'Ты уже поставил на этот матч',
-  bad_amount: 'Ставка — от 1 ослика',
+  get bad_amount() {
+    return `Ставка — от 1 ${theme().currency.few}`
+  },
   own_photo: 'Своё фото лайкать нельзя',
   not_yet: 'Лайкать можно, когда закончится съёмка',
   power_cooldown: 'Нужен отдых (1 ход)'

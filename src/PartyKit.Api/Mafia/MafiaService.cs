@@ -50,7 +50,7 @@ public class MafiaService(AppDbContext db, ILiveNotifier live, TimeProvider time
                     throw new BadInputException("bad_target");
                 }
 
-                // Ослики — только за первую проверку каждой мафии.
+                // Монеты — только за первую проверку каждой мафии.
                 if (target.Role == MafiaRole.Mafia && !checks.Any(c => c.TargetId == target.UserId))
                 {
                     bonuses = [.. bonuses, new MafiaBonus(userId, MafiaBonusKind.Check, 1, MafiaModule.CheckCoins)];
@@ -70,7 +70,7 @@ public class MafiaService(AppDbContext db, ILiveNotifier live, TimeProvider time
     });
 
     /// <summary>
-    /// Ночное задание сделано: до пяти за ночь, не чаще раза в полторы секунды. У ролей считается для вида, ослики — только мирным.
+    /// Ночное задание сделано: до пяти за ночь, не чаще раза в полторы секунды. У ролей считается для вида, монеты — только мирным.
     /// </summary>
     public Task TaskDoneAsync(Guid eventId, Guid userId) => ChangeAsync(eventId, state =>
     {

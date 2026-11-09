@@ -43,7 +43,7 @@ public partial class RegistrationService(
     /// <summary>До этой оценки первый пароль считается слабым — его маску можно показывать на ТВ.</summary>
     public const int MaxWeakScore = 1;
 
-    /// <summary>Максимум осликов за каждую из двух частей (скорость, пароль).</summary>
+    /// <summary>Максимум монет за каждую из двух частей (скорость, пароль).</summary>
     public const int PartMaxCoins = 10;
 
     /// <summary>
@@ -56,7 +56,7 @@ public partial class RegistrationService(
     }
 
     /// <summary>
-    /// Таблица регистрации с разбивкой осликов. До закрытия — пустая; опоздавшие — в конце, без мест.
+    /// Таблица регистрации с разбивкой монет. До закрытия — пустая; опоздавшие — в конце, без мест.
     /// </summary>
     public async Task<IReadOnlyList<RegistrationResultRowDto>> GetResultsAsync()
     {
@@ -169,7 +169,7 @@ public partial class RegistrationService(
     }
 
     /// <summary>
-    /// Закрывает регистрацию и начисляет очки: скорость и сложность пароля, по 10 осликов максимум.
+    /// Закрывает регистрацию и начисляет очки: скорость и сложность пароля, по 10 монет максимум.
     /// </summary>
     public async Task<bool> CloseAsync()
     {
@@ -283,7 +283,7 @@ public partial class RegistrationService(
             return (RegistrationOutcome.SamePassword, null);
         }
 
-        // Слабый тоже принимаем: гость просто получит меньше осликов за пароль.
+        // Слабый тоже принимаем: гость просто получит меньше монет за пароль.
         var analysis = analyzer.Analyze(newPassword);
 
         var now = time.GetUtcNow();

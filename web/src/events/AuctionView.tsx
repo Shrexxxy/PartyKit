@@ -8,6 +8,7 @@ import type { AuctionDetails } from './details'
 import { useCountdown } from './useCountdown'
 import { Emoji } from '../components/Emoji'
 import { EmojiText } from '../components/Emoji'
+import { theme } from '../theme'
 
 /** Таймер торгов и «Раз… два…» под конец. */
 function BiddingClock({ deadline, serverTime, tv }: { deadline: string; serverTime: string; tv?: boolean }) {
@@ -86,7 +87,7 @@ export function AuctionView({ eventId, details, serverTime, myId, tv }: { eventI
           )}
           {!tv && details.leader?.userId === myId && <p className="muted">Ты лидер — жди, перебьют ли</p>}
           {!tv && details.leader?.userId !== myId && buttons.length > 0 && buttons.every((b) => !b.enabled) && (
-            <p className="muted">Не хватает осликов на руках</p>
+            <p className="muted">Не хватает {theme().currency.many} на руках</p>
           )}
         </>
       )}

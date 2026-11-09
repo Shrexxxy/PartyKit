@@ -27,6 +27,7 @@ using PartyKit.Api.Reaction;
 using PartyKit.Api.Registration;
 using PartyKit.Api.Spa;
 using PartyKit.Api.Tapper;
+using PartyKit.Api.Theming;
 using PartyKit.Api.Tote;
 using PartyKit.Api.Tournament;
 using PartyKit.Api.Tv;
@@ -48,6 +49,7 @@ Console.WriteLine($"ASP.NET Core TEMP: {tempPath}");
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(StorageOptions.Section));
 builder.Services.Configure<AccountsOptions>(builder.Configuration.GetSection(AccountsOptions.Section));
 builder.Services.Configure<PartyOptions>(builder.Configuration.GetSection(PartyOptions.Section));
+builder.Services.AddPartyTheme(builder.Configuration);
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddDbContext<AppDbContext>((sp, options) =>
 {
@@ -116,6 +118,8 @@ builder.Services.AddDataProtection()
 
 var app = builder.Build();
 
+app.UsePartyTheme();
+
 using (var scope = app.Services.CreateScope())
 {
     await scope.ServiceProvider.GetRequiredService<StaffSeeder>().SeedAsync();
@@ -138,6 +142,7 @@ app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapTheme();
 app.MapAuth();
 app.MapLeaderboard();
 app.MapAdmin();

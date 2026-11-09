@@ -17,7 +17,7 @@ describe('eventPageState', () => {
     expect(eventPageState('x', active, events)).toBe('unknown')
   })
 
-  it('ивент без осликов (церемония) не попадает в программу — если страница видела его идущим, он закончился', () => {
+  it('ивент без монет (церемония) не попадает в программу — если страница видела его идущим, он закончился', () => {
     expect(eventPageState('p', null, events, true)).toBe('finished')
     expect(eventPageState('p', null, events, false)).toBe('unknown')
   })

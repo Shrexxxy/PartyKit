@@ -300,7 +300,7 @@ public class AuctionTests : IDisposable
 
         var board = (await admin.GetFromJsonAsync<List<LeaderboardRowDto>>("/api/leaderboard", TestClients.Json))!;
 
-        // Места — по осликам, как до аукциона; «на руках» — минус покупки.
+        // Места — по монетам, как до аукциона; «на руках» — минус покупки.
         board.Select(r => (r.Login, r.Coins, r.Cash, r.Place)).Should().Equal(("Ann", 100, 50, 1), ("Bob", 90, 90, 2));
     }
 

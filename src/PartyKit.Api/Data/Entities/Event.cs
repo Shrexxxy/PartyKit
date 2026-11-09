@@ -25,7 +25,7 @@ public enum EventType
     /// <summary>Один запуск фотоохоты.</summary>
     PhotoHunt,
 
-    /// <summary>Церемония награждения, ослики не даёт.</summary>
+    /// <summary>Церемония награждения, монеты не даёт.</summary>
     Ceremony,
 
     /// <summary>Реакция Шрека: красный → зелёный, кто быстрее тапнет.</summary>
@@ -43,7 +43,7 @@ public enum EventType
     /// <summary>Своя игра.</summary>
     Quiz,
 
-    /// <summary>Аукцион после церемонии, ослики не даёт.</summary>
+    /// <summary>Аукцион после церемонии, монеты не даёт.</summary>
     Auction,
 
     /// <summary>Мафия; ведёт именинник.</summary>

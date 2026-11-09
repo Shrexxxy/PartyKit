@@ -181,7 +181,7 @@ public class NeuroPhotoTests : IDisposable
 
         await AdvanceAsync(NeuroModule.GuessTime);
 
-        // Ослики — сразу на раскрытии, ивент ещё идёт.
+        // Монеты — сразу на раскрытии, ивент ещё идёт.
         (await StatusAsync(id)).Should().Be(EventStatus.Active);
         (await TabAsync(admin, id)).Should().BeEquivalentTo(new Dictionary<string, int> { ["Ann"] = 5, ["Bob"] = 2, ["Cid"] = 2, ["Dan"] = 0 });
 

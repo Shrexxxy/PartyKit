@@ -161,7 +161,7 @@ public class TournamentTests : IDisposable
     [Fact]
     public async Task Finish_early_ranks_by_progress()
     {
-        // Турнир не доиграли: ведущий может завершить, ослики — по тому, кто как далеко прошёл.
+        // Турнир не доиграли: ведущий может завершить, монеты — по тому, кто как далеко прошёл.
         await SeedPlayersAsync("Ann", "Bob", "Cid", "Dan");
         var (id, admin) = await StartTournamentAsync();
         var semi = Matches(await DetailsAsync(admin), "Semi")[0];

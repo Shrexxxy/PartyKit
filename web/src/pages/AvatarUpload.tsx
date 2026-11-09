@@ -7,7 +7,7 @@ import { EmojiText } from '../components/Emoji'
 
 const MAX_SIDE = 512
 
-/** Кнопка селфи: только фронтальная камера, +5 осликов за первое фото. */
+/** Кнопка селфи: только фронтальная камера, +5 монет за первое фото. */
 export function AvatarUpload() {
   const { me, setMe } = useMe()
   const input = useRef<HTMLInputElement>(null)

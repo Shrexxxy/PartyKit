@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <None Update="Neuro/neuro-rounds.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Тема-пример из корня репо — рядом с приложением; свою тему подставляет Theme:Dir. -->
+    <None Include="../../theme/**" LinkBase="theme" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

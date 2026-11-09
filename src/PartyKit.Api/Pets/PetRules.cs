@@ -44,11 +44,11 @@ public record PetStats(int Strength, int Agility, int Intellect)
 public record PetStart(PetClass Class, PetStats Stats, PetStat FirstMinor);
 
 /// <summary>
-/// Правила драконоосликов: раздача классов, стартовые характеристики, уровень от заработанных осликов, прокачка.
+/// Правила драконоосликов: раздача классов, стартовые характеристики, уровень от заработанных монет, прокачка.
 /// </summary>
 public static class PetRules
 {
-    /// <summary>Заработанных осликов на уровень.</summary>
+    /// <summary>Заработанных монет на уровень.</summary>
     public const int XpPerLevel = 50;
 
     /// <summary>Тапов, чтобы вылупился.</summary>

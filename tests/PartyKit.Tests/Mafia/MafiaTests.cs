@@ -371,7 +371,7 @@ public class MafiaTests : IDisposable
         details.GetProperty("winner").GetString().Should().Be("Mafia");
     }
 
-    #region Задания и ослики
+    #region Задания и монеты
 
     [Fact]
     public async Task Civilian_does_five_tasks_and_gets_one_each()

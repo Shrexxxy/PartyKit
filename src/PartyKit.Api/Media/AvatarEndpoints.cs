@@ -18,7 +18,7 @@ public static class AvatarEndpoints
     /// <summary>Максимальный размер загружаемого файла.</summary>
     public const long MaxUploadBytes = 100 * 1024 * 1024;
 
-    /// <summary>Ослики за первую аватарку.</summary>
+    /// <summary>Монеты за первую аватарку.</summary>
     public const int AvatarCoins = 5;
 
     /// <summary>

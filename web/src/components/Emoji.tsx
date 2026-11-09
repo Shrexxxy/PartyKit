@@ -2,7 +2,7 @@ import { CoinIcon } from './CoinIcon'
 import { emojiSrc, splitEmoji } from './emojiMap'
 import { Sprite } from './Sprite'
 
-/** Валюта — всегда монетка, а не картинка ослика. */
+/** Эмодзи валюты — всегда иконка валюты темы. */
 const COIN = '🫏'
 
 /** Эмодзи картинкой из ComfyUI; картинки нет (или не загрузилась) — сам символ. */

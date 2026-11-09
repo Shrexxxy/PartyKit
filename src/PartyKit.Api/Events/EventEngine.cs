@@ -23,7 +23,7 @@ public enum EngineOutcome
 }
 
 /// <summary>
-/// Программа вечера: создание, порядок, старт, тик по времени, завершение с начислением осликов.
+/// Программа вечера: создание, порядок, старт, тик по времени, завершение с начислением монет.
 /// </summary>
 public class EventEngine(
     AppDbContext db,
@@ -38,7 +38,7 @@ public class EventEngine(
     private static readonly EventType[] NotInProgram = [EventType.Registration, EventType.Tote];
 
     /// <summary>
-    /// Максимум осликов по умолчанию для типа.
+    /// Максимум монет по умолчанию для типа.
     /// </summary>
     public static int DefaultMaxCoins(EventType type) => type switch
     {
@@ -178,7 +178,7 @@ public class EventEngine(
     }
 
     /// <summary>
-    /// Завершает ивент: места от модуля → ослики по схеме ивента.
+    /// Завершает ивент: места от модуля → монеты по схеме ивента.
     /// </summary>
     public async Task<EngineOutcome> FinishAsync(Guid id)
     {

@@ -69,7 +69,7 @@ public class AuctionLotService(AppDbContext db, MediaStorage media, TimeProvider
         await db.SaveChangesAsync();
     }
 
-    /// <summary>Удалить лот с фото; проданный — нельзя (иначе покупка пропадёт из истории, а ослики останутся списаны).</summary>
+    /// <summary>Удалить лот с фото; проданный — нельзя (иначе покупка пропадёт из истории, а монеты останутся списаны).</summary>
     public async Task DeleteAsync(Guid lotId)
     {
         await EnsureNotInAuctionAsync();

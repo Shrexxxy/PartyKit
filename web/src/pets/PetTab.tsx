@@ -8,6 +8,7 @@ import { Sprite } from '../components/Sprite'
 import { ACTION_ICONS, skillArt } from '../events/boss'
 import { CLASS_ICONS, CLASS_NAMES, EGG_TAPS, eggArt, eggStage, petArt, skillGuide, STATS, xpProgress } from './pets'
 import { Emoji } from '../components/Emoji'
+import { theme } from '../theme'
 
 /** Трещины по стадиям: с каждой стадией их больше. Координаты — в квадрате 100×100 поверх картинки яйца. */
 const CRACK_PATHS = ['M38 40l7 6-4 6 8 6', 'M62 32l-5 8 6 5-4 9', 'M40 72l8-5 3 7 8-4']
@@ -148,7 +149,7 @@ function PetCard({ pet, fresh }: { pet: PetDto; fresh: boolean }) {
         </span>
       </div>
       <small className="muted">
-        Сила даёт здоровье, ловкость — урон, интеллект — ману. Растёт от заработанных осликов: 50 <CoinIcon /> — уровень.
+        Сила даёт здоровье, ловкость — урон, интеллект — ману. Растёт от заработанных {theme().currency.many}: 50 <CoinIcon /> — уровень.
       </small>
       <SkillsGuide pet={pet} />
     </div>
