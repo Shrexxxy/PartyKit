@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PartyKit.Api/PartyKit.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PartyKit.Tests/PartyKit.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/PartyKit.Rehearsal/PartyKit.Rehearsal.csproj" />
+  </Folder>
+</Solution>

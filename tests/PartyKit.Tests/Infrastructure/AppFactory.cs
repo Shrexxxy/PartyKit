@@ -1,0 +1,66 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Time.Testing;
+
+namespace PartyKit.Tests.Infrastructure;
+
+/// <summary>
+/// Тестовый хост приложения: своя временная папка данных (SQLite-файл и медиа), управляемое время.
+/// Фоновый таймер ивентов выключен — тесты двигают время и вызывают тик сами.
+/// </summary>
+/// <param name="dataDir">Общая папка данных (для тестов перезапуска); null — своя временная.</param>
+/// <param name="configureServices">Подмена сервисов (например, тестовый модуль ивента).</param>
+/// <param name="startDelaySeconds">Отсчёт перед стартом ивента; 0 — ивент стартует сразу (почти все тесты).</param>
+public class AppFactory(string? dataDir = null, Action<IServiceCollection>? configureServices = null, int startDelaySeconds = 0)
+    : WebApplicationFactory<Program>
+{
+    public const string AdminLogin = "admin";
+    public const string AdminPassword = "admin-test-pass";
+    public const string ViewerLogin = "tv";
+    public const string ViewerPassword = "tv-test-pass";
+
+    private readonly bool _ownsDataDir = dataDir is null;
+
+    /// <summary>Папка данных этого хоста.</summary>
+    public string DataDir { get; } = dataDir ?? Path.Combine(Path.GetTempPath(), "party-tests", Guid.NewGuid().ToString("N"));
+
+    /// <summary>Управляемое время приложения.</summary>
+    public FakeTimeProvider Time { get; } = new(new DateTimeOffset(2026, 11, 4, 18, 0, 0, TimeSpan.Zero));
+
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.UseEnvironment("Testing");
+        builder.UseSetting("Storage:DataDir", DataDir);
+        builder.UseSetting("Accounts:Admin:Login", AdminLogin);
+        builder.UseSetting("Accounts:Admin:Password", AdminPassword);
+        builder.UseSetting("Accounts:Viewer:Login", ViewerLogin);
+        builder.UseSetting("Accounts:Viewer:Password", ViewerPassword);
+        builder.UseSetting("Events:TickerEnabled", "false");
+        builder.UseSetting("Party:StartDelaySeconds", startDelaySeconds.ToString());
+        builder.ConfigureServices(services =>
+        {
+            services.Replace(ServiceDescriptor.Singleton<TimeProvider>(Time));
+            configureServices?.Invoke(services);
+        });
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (disposing && _ownsDataDir)
+        {
+            SqliteConnection.ClearAllPools();
+            try
+            {
+                Directory.Delete(DataDir, recursive: true);
+            }
+            catch (IOException)
+            {
+                // Временную папку не жалко оставить, если файл ещё занят.
+            }
+        }
+    }
+}

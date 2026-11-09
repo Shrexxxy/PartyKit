@@ -1,0 +1,19 @@
+{
+  "decoys": [
+    "Пират",
+    "Супергерой",
+    "Космонавт"
+  ],
+  "rounds": [
+    {
+      "id": "example1",
+      "answer": "Борис",
+      "character": "Рыцарь"
+    },
+    {
+      "id": "example2",
+      "answer": "Вера",
+      "character": "Фея"
+    }
+  ]
+}

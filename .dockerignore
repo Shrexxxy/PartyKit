@@ -1,0 +1,13 @@
+.git
+.specs
+.vs
+.idea
+data
+**/bin
+**/obj
+web/node_modules
+src/PartyKit.Api/wwwroot
+deploy/.env
+web/public/_review
+web/public/_sketch
+comfy

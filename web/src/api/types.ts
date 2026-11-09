@@ -1,0 +1,147 @@
+// Зеркало контрактов бэкенда. Enum'ы приходят строками.
+
+export type UserRole = 'Player' | 'Admin' | 'Viewer'
+export type RegistrationState = 'Closed' | 'Open' | 'Finished'
+export type EventType =
+  | 'Registration'
+  | 'BossFight'
+  | 'Tournament'
+  | 'Tote'
+  | 'Laugh'
+  | 'HideAndSeek'
+  | 'PhotoHunt'
+  | 'Ceremony'
+  | 'Reaction'
+  | 'Tapper'
+  | 'Days'
+  | 'NeuroPhoto'
+  | 'Quiz'
+  | 'Auction'
+  | 'Mafia'
+export type EventStatus = 'Draft' | 'Starting' | 'Active' | 'Finished'
+
+export interface MeDto {
+  id: string
+  login: string
+  role: UserRole
+  avatarUrl: string | null
+}
+
+export interface LeaderboardRowDto {
+  userId: string
+  login: string
+  avatarUrl: string | null
+  coins: number
+  place: number
+  /** «На руках»: ослики минус покупки на аукционе (места — по coins). */
+  cash: number
+}
+
+export interface EventDto {
+  id: string
+  type: EventType
+  title: string
+  status: EventStatus
+  maxCoins: number
+}
+
+export interface RegistrationStatusDto {
+  state: RegistrationState
+  openedAt: string | null
+  waitingCount: number
+  closedAt: string | null
+}
+
+export interface ActiveEventDto {
+  id: string
+  type: EventType
+  title: string
+  startedAt: string | null
+  /** Starting — идёт отсчёт перед стартом: startedAt — когда начнётся, details ещё нет. */
+  status: EventStatus
+  /** Своя форма у каждого типа — см. модули ивентов; null, пока идёт отсчёт. */
+  details: unknown
+}
+
+export interface TvMessageDto {
+  text: string
+  imageUrl: string | null
+  until: string
+}
+
+export interface AppSnapshot {
+  registration: RegistrationStatusDto
+  leaderboard: LeaderboardRowDto[]
+  serverTime: string
+  activeEvent?: ActiveEventDto | null
+  tvMessage?: TvMessageDto | null
+  /** Сколько медиа Своей игры скачало ТВ — только админу. */
+  tvPreload?: { loaded: number; total: number; at: string } | null
+  /** Свой драконоослик — только игроку. */
+  myPet?: PetDto | null
+  /** Сколько вылупилось — ТВ и ведущему; список — только ведущему. */
+  pets?: PetsOverviewDto | null
+}
+
+export type PetClass = 'Tank' | 'Fighter' | 'Mage'
+
+export interface PetDto {
+  userId: string
+  login: string
+  name: string
+  /** Игрок уже дал кличку — второй раз нельзя. */
+  named: boolean
+  /** Рисунок внутри класса, 1–5: картинка питомца и цвет яйца. */
+  variant: number
+  class: PetClass
+  hatched: boolean
+  level: number
+  /** Заработано за вечер — это опыт. */
+  earned: number
+  /** Сколько всего надо заработать до следующего уровня. */
+  nextLevelAt: number
+  strength: number
+  agility: number
+  intellect: number
+  health: number
+  damage: number
+  mana: number
+}
+
+export interface PetsOverviewDto {
+  hatched: number
+  total: number
+  pets: PetDto[]
+  /** Ни один ивент ещё не стартовал — ТВ показывает счётчик только до него. */
+  beforeFirstEvent: boolean
+}
+
+export interface ProgramItemDto {
+  id: string
+  type: EventType
+  title: string
+  status: EventStatus
+  order: number
+  maxCoins: number
+}
+
+export interface FactDto {
+  text: string
+  logins: string[]
+}
+
+export interface RegistrationResultRowDto {
+  userId: string
+  login: string
+  avatarUrl: string | null
+  /** null — опоздал. */
+  place: number | null
+  speedPlace: number | null
+  elapsedSeconds: number
+  passwordScore: number
+  passwordGuessesLog10: number
+  speedCoins: number
+  passwordCoins: number
+  totalCoins: number
+  isLate: boolean
+}
